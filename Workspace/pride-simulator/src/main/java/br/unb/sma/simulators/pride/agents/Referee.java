@@ -32,7 +32,7 @@ public class Referee extends ObservableAgent {
 		lookToFighters();
 		startCombat();
 		controlFight();
-		attentionForKnockout();
+//		attentionForKnockout();
 	}
 
 	private void enterTheOctogon() {
@@ -168,55 +168,55 @@ public class Referee extends ObservableAgent {
 		});
 	}
 
-	private void attentionForKnockout() {
-		addBehaviour(new CyclicBehaviour() {
+//	private void attentionForKnockout() {
+//		addBehaviour(new CyclicBehaviour() {
+//
+//			private static final long serialVersionUID = 1L;
+//
+//			@Override
+//			public void action() {
+//				MessageTemplate template = MessageTemplate.and(
+//						MessageTemplate.MatchPerformative(ACLMessage.INFORM),
+//						MessageTemplate.MatchLanguage("knockout"));
+//
+//				ACLMessage knockout = myAgent.receive(template);
+//
+//				if (knockout != null) {
+//					if (broadcaster == null) {
+//						System.out.println("Broadcaster off!");
+//					} else {
+//						System.out.println(knockout.getContent());
+//					}
+//
+//					reportThat(knockout.getContent());
+//
+//					fighters.remove(knockout.getSender());
+//
+//					if (fighters.size() == 1) {
+//						reportThat(fighters.get(0).getLocalName() + " won!");
+//						endCombat();
+//					} else {
+//						reportThat(fighters.size()
+//								+ Messages.FIGHTERS_REMAINING);
+//					}
+//				}
+//			}
+//		});
+//	}
 
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void action() {
-				MessageTemplate template = MessageTemplate.and(
-						MessageTemplate.MatchPerformative(ACLMessage.INFORM),
-						MessageTemplate.MatchLanguage("knockout"));
-
-				ACLMessage knockout = myAgent.receive(template);
-
-				if (knockout != null) {
-					if (broadcaster == null) {
-						System.out.println("Broadcaster off!");
-					} else {
-						System.out.println(knockout.getContent());
-					}
-
-					reportThat(knockout.getContent());
-
-					fighters.remove(knockout.getSender());
-
-					if (fighters.size() == 1) {
-						reportThat(fighters.get(0).getLocalName() + " won!");
-						endCombat();
-					} else {
-						reportThat(fighters.size()
-								+ Messages.FIGHTERS_REMAINING);
-					}
-				}
-			}
-		});
-	}
-
-	private void endCombat() {
-		reportThat(Messages.OVER);
-
-		ACLMessage itsOver = new ACLMessage(ACLMessage.INFORM);
-		itsOver.setLanguage("over");
-
-		for (AID fighter : fighters) {
-			itsOver.addReceiver(fighter);
-		}
-
-		send(itsOver);
-		doDelete();
-	}
+//	private void endCombat() {
+//		reportThat(Messages.OVER);
+//
+//		ACLMessage itsOver = new ACLMessage(ACLMessage.INFORM);
+//		itsOver.setLanguage("over");
+//
+//		for (AID fighter : fighters) {
+//			itsOver.addReceiver(fighter);
+//		}
+//
+//		send(itsOver);
+//		doDelete();
+//	}
 
 	protected void takeDown() {
 		reportThat(name + Messages.LEFT_THE_OCTOGON);
